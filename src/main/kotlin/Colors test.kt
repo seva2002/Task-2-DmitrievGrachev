@@ -20,7 +20,6 @@ fun isSetPoint(z0: ComplexNumber, f: (ComplexNumber) -> ComplexNumber, steps: In
         if (z.abs() > 2) {
             // ЧБ
             return makeColor(0.0, 0.0, 1.0*i/steps)
-
             //return makeColor(0.0, 0.0, ln(10.0*i/steps+1.0))
             //return makeColor(0.0,0.0,0.1/(1.0*i/steps))
             //return makeColor(0.0,0.0, sin(10.0*i/steps)*sin(10.0*i/steps))
