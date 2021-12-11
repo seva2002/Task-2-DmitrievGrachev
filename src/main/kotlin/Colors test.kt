@@ -30,14 +30,14 @@ fun isSetPoint(z0: ComplexNumber, f: (ComplexNumber) -> ComplexNumber, steps: In
             //return makeColor(5.0*i/steps,1.0,2.0*i/steps)
             //return 10*i+makeColor(5.0*i/steps,1.0,2.0*(1.0*i/steps))
             //return makeColor(2.0*i/steps, 1.0, 1.0)
-            //return makeColor(sin2(3*i), sin2(i), sin2(5*i)) // Самая хорошая.
+            //return makeColor(sin2(2*i), sin2(i), sin2(5*i)) // Самая хорошая.
         }
         z = f(z)
     }
     return makeColor(0.0, 0.0, 0.0)
 }
 
-fun makeImage(width: Int, heigth: Int, f: (ComplexNumber) -> ComplexNumber, steps: Int, range:Double): Image
+fun makeJuliaImage(width: Int, heigth: Int, f: (ComplexNumber) -> ComplexNumber, steps: Int, range:Double): Image
 {
     val data = Array(width*heigth) {
         val x = 2.0*range * (1.0*(it%width)/width-0.5)
@@ -58,7 +58,7 @@ fun main() {
     val width = 1500
     val height = 780
 
-    // Функция Жулиа
+    // Функция для множества Жулиа
     val f: (ComplexNumber) -> ComplexNumber = { z -> z * z + ComplexNumber(-0.4, 0.6) }
 
     // Мы нашли пример работы с графикой и переделали под свои нужды, глубоко не вникали
@@ -68,7 +68,7 @@ fun main() {
 
     // Последние 2 параметра отвечают за максимальное количество итераций и размер обозреваемой области
     // Большинство раскрасок смотрятся хорошо только при 150. При числах больше перестают различаться внешние контуры
-    val img = makeImage(width, height, f, 150, 2.0)
+    val img = makeJuliaImage(width, height, f, 150, 2.0)
     val scaledImg = img.getScaledInstance(width, height, Image.SCALE_SMOOTH)
 
     imgAsLabel.icon = ImageIcon(scaledImg)
