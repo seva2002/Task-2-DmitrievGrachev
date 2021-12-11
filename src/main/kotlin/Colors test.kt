@@ -19,7 +19,7 @@ fun isSetPoint(z0: ComplexNumber, f: (ComplexNumber) -> ComplexNumber, steps: In
     for (i in 0..steps) {
         if (z.abs() > 2) {
             // ЧБ
-            return makeColor(0.0, 0.0, 1.0*i/steps)
+            //return makeColor(0.0, 0.0, 1.0*i/steps)
             //return makeColor(0.0, 0.0, ln(10.0*i/steps+1.0))
             //return makeColor(0.0,0.0,0.1/(1.0*i/steps))
             //return makeColor(0.0,0.0, sin(10.0*i/steps)*sin(10.0*i/steps))
@@ -30,14 +30,14 @@ fun isSetPoint(z0: ComplexNumber, f: (ComplexNumber) -> ComplexNumber, steps: In
             //return makeColor(5.0*i/steps,1.0,2.0*i/steps)
             //return 10*i+makeColor(5.0*i/steps,1.0,2.0*(1.0*i/steps))
             //return makeColor(2.0*i/steps, 1.0, 1.0)
-            //return makeColor(sin2(2*i), sin2(i), sin2(5*i)) // Самая хорошая.
+            return makeColor(sin2(2*i), sin2(i), sin2(5*i)) // Самая хорошая.
         }
         z = f(z)
     }
     return makeColor(0.0, 0.0, 0.0)
 }
 
-fun makeJuliaImage(width: Int, heigth: Int, f: (ComplexNumber) -> ComplexNumber, steps: Int, range:Double): Image
+fun makeJuliaImage(width: Int, heigth: Int, f: (ComplexNumber) -> ComplexNumber, steps: Int, range:Double): BufferedImage
 {
     val data = Array(width*heigth) {
         val x = 2.0*range * (1.0*(it%width)/width-0.5)
@@ -77,4 +77,6 @@ fun main() {
     frame.contentPane.add(panel)
     frame.pack()
     frame.isVisible = true
+
+    saveImgToPng(img, "my-output\\JuliaSet")
 }

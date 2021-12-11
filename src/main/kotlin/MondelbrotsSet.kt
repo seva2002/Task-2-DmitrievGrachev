@@ -3,6 +3,8 @@ import java.awt.*
 import java.awt.image.BufferedImage
 import javax.swing.*
 import kotlin.math.*
+import java.io.*
+import javax.imageio.ImageIO
 
 fun isMSetPoint(c: ComplexNumber, f: (z: ComplexNumber, c:ComplexNumber) -> ComplexNumber, steps: Int): Int {
     var z = ComplexNumber()
@@ -18,18 +20,19 @@ fun isMSetPoint(c: ComplexNumber, f: (z: ComplexNumber, c:ComplexNumber) -> Comp
             //return makeColor(0.0, 0.0, (i.toDouble())/steps.toDouble() + (ln(2.0)/z.abs())/5.0) // Нашли красивую
 
             // Цветные
-            return 10*i // по сути черно-белое, но цвет благородный, выглядит красиво, поэтом решили оставить
+            //return 10*i // по сути черно-белое, но цвет благородный, выглядит красиво, поэтом решили оставить
             //return makeColor(5.0*i/steps,1.0,2.0*i/steps)
             //return 10*i+makeColor(5.0*i/steps,1.0,2.0*(1.0*i/steps))
             //return makeColor(2.0*i/steps, 1.0, 1.0)
-            //return makeColor(sin2(2*i), sin2(i), sin2(5*i)) // Самая хорошая.
+            return makeColor(sin2(2*i), sin2(i), sin2(5*i)) // Самая хорошая.
         }
         z = f(z, c)
     }
     return makeColor(0.0, 0.0, 0.0)
 }
 
-fun makeModelbrotSetImage(width: Int, heigth: Int, f: (z: ComplexNumber, c:ComplexNumber) -> ComplexNumber, steps: Int, range:Double): Image
+fun makeModelbrotSetImage(width: Int, heigth: Int, f: (z: ComplexNumber, c:ComplexNumber) -> ComplexNumber,
+                          steps: Int, range:Double): BufferedImage
 {
     val data = Array(width*heigth) {
         val x = 2.0*range * (1.0*(it%width)/width-0.5)
@@ -42,6 +45,15 @@ fun makeModelbrotSetImage(width: Int, heigth: Int, f: (z: ComplexNumber, c:Compl
     img.setRGB(0, 0, width, heigth, pixels.toIntArray(), 0, width)
     return img
 }
+
+fun saveImgToPng(img: BufferedImage, name: String)
+{
+    ImageIO.write(img, "PNG", File(name + ".PNG"))
+}
+
+
+
+
 
 
 fun main() {
@@ -69,4 +81,7 @@ fun main() {
     frame.contentPane.add(panel)
     frame.pack()
     frame.isVisible = true
+
+    saveImgToPng(img, "my-output\\MondelbrotSet")
+
 }
