@@ -28,9 +28,9 @@ fun isSetPoint(z0: ComplexNumber, f: (ComplexNumber) -> ComplexNumber, steps: In
             // Цветные
             //return 10*i // по сути черно-белое, но цвет благородный, выглядит красиво, поэтом решили оставить
             //return makeColor(5.0*i/steps,1.0,2.0*i/steps)
-            //return 10*i+makeColor(5.0*i/steps,1.0,2.0*(1.0*i/steps))
+            return 10*i+makeColor(5.0*i/steps,1.0,2.0*(1.0*i/steps))
             //return makeColor(2.0*i/steps, 1.0, 1.0)
-            return makeColor(sin2(2*i), sin2(i), sin2(5*i)) // Самая хорошая.
+            //return makeColor(sin2(2*i), sin2(i), sin2(5*i)) // Самая хорошая.
         }
         z = f(z)
     }

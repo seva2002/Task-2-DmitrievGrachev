@@ -48,13 +48,8 @@ fun makeModelbrotSetImage(width: Int, heigth: Int, f: (z: ComplexNumber, c:Compl
 
 fun saveImgToPng(img: BufferedImage, name: String)
 {
-    ImageIO.write(img, "PNG", File(name + ".PNG"))
+    ImageIO.write(img, "PNG", File(name + ".png"))
 }
-
-
-
-
-
 
 fun main() {
 
