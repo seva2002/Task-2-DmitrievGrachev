@@ -13,3 +13,4 @@
 `gradle/wrapper/gradle-wrapper.properties` (например, на `gradle-6.8-bin.zip` или
 `gradle-5.3.1-bin.zip`). После изменений конфигурации проекта необходимо выполнить View/Tool
 Windows/Gradle/Reload All Gradle Projects.
+# Task-2-DmitrievGrachev
